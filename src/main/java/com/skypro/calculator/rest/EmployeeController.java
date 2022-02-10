@@ -1,26 +1,28 @@
 package com.skypro.calculator.rest;
 
+import com.skypro.calculator.model.Employee;
+import com.skypro.calculator.services.EmployeeCollectionsService;
+import com.skypro.calculator.services.EmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.skypro.calculator.model.Employee;
-import com.skypro.calculator.services.EmployeeService;
+
+import java.util.Set;
 
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
 
-    private EmployeeService employeeService;
+    private EmployeeCollectionsService employeeService;
 
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
+    public EmployeeController(EmployeeCollectionsService employeeService) { this.employeeService = employeeService;  }
 
     @GetMapping("/")
     public String greetEmployee(){
         return "Hello employees!";
     }
+
     @GetMapping("/add")
     public Employee addEmployee(@RequestParam("firstName") String firstName,
                                 @RequestParam("lastName") String lastName){
@@ -30,13 +32,18 @@ public class EmployeeController {
     @GetMapping("/remove")
     public Employee removeEmployee(@RequestParam("firstName") String firstName,
                                    @RequestParam("lastName") String lastName){
-        Employee removedEmployee = employeeService.addEmployee(firstName, lastName);
+        Employee removedEmployee = employeeService.removeEmployee(firstName, lastName);
         return removedEmployee;
     }
     @GetMapping("/find")
     public Employee findEmployee(@RequestParam("firstName") String firstName,
                                  @RequestParam("lastName") String lastName){
-        Employee foundEmployee = employeeService.addEmployee(firstName, lastName);
+        Employee foundEmployee = employeeService.findEmployee(firstName, lastName);
         return foundEmployee;
+    }
+
+    @GetMapping("/getAllEmployees")
+    public Set<Employee> getAllEmployees(){
+        return employeeService.getAllEmployees();
     }
 }
