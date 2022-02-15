@@ -7,6 +7,7 @@ import com.skypro.calculator.model.Employee;
 import com.skypro.calculator.services.EmployeeCollectionsService;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,7 +49,7 @@ public class EmployeeServiceCollectionsImpl implements EmployeeCollectionsServic
         }
 
     @Override
-    public Set<Employee> getAllEmployees() {
-        return employees;
+    public Collection<Employee> getAllEmployees() {
+            return employees;
     }
 }

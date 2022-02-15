@@ -2,6 +2,7 @@ package com.skypro.calculator.services;
 
 import com.skypro.calculator.model.Employee;
 
+import java.util.Collection;
 import java.util.Set;
 
 public interface EmployeeMapService {
@@ -11,5 +12,5 @@ public interface EmployeeMapService {
 
     Employee findEmployee(String firstName, String lastName);
 
-    Set<Employee> getAllEmployees();
+    Collection<Employee> getAllEmployees();
 }

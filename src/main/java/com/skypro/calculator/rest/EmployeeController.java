@@ -3,11 +3,13 @@ package com.skypro.calculator.rest;
 import com.skypro.calculator.model.Employee;
 import com.skypro.calculator.services.EmployeeCollectionsService;
 import com.skypro.calculator.services.EmployeeService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
 import java.util.Set;
 
 @RestController
@@ -16,7 +18,7 @@ public class EmployeeController {
 
     private EmployeeCollectionsService employeeService;
 
-    public EmployeeController(EmployeeCollectionsService employeeService) { this.employeeService = employeeService;  }
+    public EmployeeController(@Qualifier("employeeServiceCollectionsImpl") EmployeeCollectionsService employeeService) { this.employeeService = employeeService;  }
 
     @GetMapping("/")
     public String greetEmployee(){
@@ -43,7 +45,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/getAllEmployees")
-    public Set<Employee> getAllEmployees(){
+    public Collection<Employee> getAllEmployees(){
         return employeeService.getAllEmployees();
     }
 }
