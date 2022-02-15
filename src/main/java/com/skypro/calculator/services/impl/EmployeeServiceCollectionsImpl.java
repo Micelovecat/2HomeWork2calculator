@@ -1,10 +1,10 @@
-package com.skypro.calculator.services;
+package com.skypro.calculator.services.impl;
 
 
-import com.skypro.calculator.exceptions.EmployeeArrayFullException;
 import com.skypro.calculator.exceptions.EmployeeExistsException;
 import com.skypro.calculator.exceptions.EmployeeNotFoundException;
 import com.skypro.calculator.model.Employee;
+import com.skypro.calculator.services.EmployeeCollectionsService;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -14,7 +14,6 @@ import java.util.Set;
 public class EmployeeServiceCollectionsImpl implements EmployeeCollectionsService {
 
         private Set<Employee> employees = new HashSet<>();
-
 
         @Override
         public Employee addEmployee(String firstName, String lastName) {

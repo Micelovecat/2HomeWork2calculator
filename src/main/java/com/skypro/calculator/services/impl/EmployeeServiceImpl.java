@@ -1,6 +1,7 @@
-package com.skypro.calculator.services;
+package com.skypro.calculator.services.impl;
 
 import com.skypro.calculator.exceptions.EmployeeArrayFullException;
+import com.skypro.calculator.services.EmployeeService;
 import org.springframework.stereotype.Service;
 import com.skypro.calculator.exceptions.EmployeeExistsException;
 import com.skypro.calculator.exceptions.EmployeeNotFoundException;
@@ -9,7 +10,7 @@ import com.skypro.calculator.model.Employee;
 import java.util.Set;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
 
     private Employee[] employees = new Employee[2];
     private int size;
