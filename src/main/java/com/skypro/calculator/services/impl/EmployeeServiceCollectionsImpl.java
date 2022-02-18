@@ -50,6 +50,6 @@ public class EmployeeServiceCollectionsImpl implements EmployeeCollectionsServic
 
     @Override
     public Collection<Employee> getAllEmployees() {
-            return employees;
+            return Set.copyOf(employees);
     }
 }

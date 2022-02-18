@@ -14,22 +14,28 @@ public class EmployeeServiceMapImpl implements EmployeeCollectionsService {
 
         private Map<String, Employee> employees = new HashMap<>();
 
+        private String keyName(String firstName, String lastName) {
+            String key = firstName + lastName;
+        return key;
+        }
+
         @Override
         public Employee addEmployee(String firstName, String lastName) {
 
             Employee addingEmployee = new Employee(firstName, lastName);
-
-            String key = firstName + lastName;
-            if (employees.containsKey(key)){
+            String key = keyName(firstName, lastName);
+            if (employees.containsKey(key)) {
                 throw new EmployeeExistsException("This employee has been already added");
             }
+
             employees.put(key, addingEmployee);
             return addingEmployee;
         }
 
-        @Override
+
+    @Override
         public Employee removeEmployee(String firstName, String lastName) {
-            String key = firstName + lastName;
+        String key = keyName(firstName, lastName);
             if (!employees.containsKey(key)){
                 throw new EmployeeNotFoundException("This employee can`t be found");
             }
@@ -39,7 +45,7 @@ public class EmployeeServiceMapImpl implements EmployeeCollectionsService {
         @Override
         public Employee findEmployee(String firstName, String lastName) {
             Employee findingEmployee = new Employee(firstName, lastName);
-            String key = firstName + lastName;
+            String key = keyName(firstName, lastName);
             if (!employees.containsKey(key)){
                 throw new EmployeeNotFoundException("This employee can`t be found");
             }

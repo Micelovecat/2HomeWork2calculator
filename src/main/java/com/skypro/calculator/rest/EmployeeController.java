@@ -26,7 +26,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public Employee addEmployee(@RequestParam("firstName") String firstName,
+    public Employee addEmployee(@RequestParam String firstName,
                                 @RequestParam("lastName") String lastName){
         Employee addedEmployee = employeeService.addEmployee(firstName, lastName);
         return addedEmployee;
