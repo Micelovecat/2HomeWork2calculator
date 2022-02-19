@@ -5,7 +5,7 @@ import com.skypro.calculator.model.Employee;
 import java.util.Collection;
 import java.util.Set;
 
-public interface EmployeeMapService {
+public interface EmployeeMapService extends EmployeeService {
     Employee addEmployee(String firstName, String lastName);
 
     Employee removeEmployee(String firstName, String lastName);

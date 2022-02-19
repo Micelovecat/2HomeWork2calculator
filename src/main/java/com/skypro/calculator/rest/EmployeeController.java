@@ -18,34 +18,38 @@ public class EmployeeController {
 
     private EmployeeCollectionsService employeeService;
 
-    public EmployeeController(@Qualifier("employeeServiceCollectionsImpl") EmployeeCollectionsService employeeService) { this.employeeService = employeeService;  }
+    public EmployeeController(@Qualifier("employeeServiceCollectionsImpl") EmployeeCollectionsService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @GetMapping("/")
-    public String greetEmployee(){
+    public String greetEmployee() {
         return "Hello employees!";
     }
 
     @GetMapping("/add")
     public Employee addEmployee(@RequestParam String firstName,
-                                @RequestParam("lastName") String lastName){
+                                @RequestParam String lastName) {
         Employee addedEmployee = employeeService.addEmployee(firstName, lastName);
         return addedEmployee;
     }
+
     @GetMapping("/remove")
-    public Employee removeEmployee(@RequestParam("firstName") String firstName,
-                                   @RequestParam("lastName") String lastName){
+    public Employee removeEmployee(@RequestParam String firstName,
+                                   @RequestParam String lastName) {
         Employee removedEmployee = employeeService.removeEmployee(firstName, lastName);
         return removedEmployee;
     }
+
     @GetMapping("/find")
-    public Employee findEmployee(@RequestParam("firstName") String firstName,
-                                 @RequestParam("lastName") String lastName){
+    public Employee findEmployee(@RequestParam String firstName,
+                                 @RequestParam String lastName) {
         Employee foundEmployee = employeeService.findEmployee(firstName, lastName);
         return foundEmployee;
     }
 
     @GetMapping("/getAllEmployees")
-    public Collection<Employee> getAllEmployees(){
+    public Collection<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
 }
