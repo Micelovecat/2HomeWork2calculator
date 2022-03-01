@@ -3,13 +3,13 @@ package com.skypro.calculator.services.impl;
 import com.skypro.calculator.exceptions.EmployeeExistsException;
 import com.skypro.calculator.exceptions.EmployeeNotFoundException;
 import com.skypro.calculator.model.Employee;
-import com.skypro.calculator.services.EmployeeCollectionsService;
+import com.skypro.calculator.services.EmployeeMapService;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
-public class EmployeeServiceMapImpl implements EmployeeCollectionsService {
+public class EmployeeServiceMapImpl implements EmployeeMapService {
 
     private Map<String, Employee> employees = new HashMap<>();
 
@@ -26,7 +26,6 @@ public class EmployeeServiceMapImpl implements EmployeeCollectionsService {
         if (employees.containsKey(key)) {
             throw new EmployeeExistsException("This employee has been already added");
         }
-
         employees.put(key, addingEmployee);
         return addingEmployee;
     }
@@ -42,7 +41,6 @@ public class EmployeeServiceMapImpl implements EmployeeCollectionsService {
 
     @Override
     public Employee findEmployee(String firstName, String lastName) {
-        Employee findingEmployee = new Employee(firstName, lastName);
         String key = keyName(firstName, lastName);
         if (!employees.containsKey(key)) {
             throw new EmployeeNotFoundException("This employee can`t be found");
