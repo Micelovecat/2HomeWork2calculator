@@ -1,5 +1,6 @@
 package com.skypro.calculator.rest;
 
+import com.skypro.calculator.exceptions.ZeroDividerException;
 import com.skypro.calculator.services.CalculatorService;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +40,7 @@ public class CalculatorController {
         }
         @GetMapping(path = "/divide")
         public String divide(@RequestParam(name = "num1", required = false) Integer num1,
-                             @RequestParam(name = "num2", required = false) Integer num2){
+                             @RequestParam(name = "num2", required = false) Integer num2) throws ZeroDividerException {
             if (num1 == null || num2 == null){
                 return "Пожалуйста добавьте оба параметра";
             }
